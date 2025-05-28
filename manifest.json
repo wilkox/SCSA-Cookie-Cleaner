@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Cookie Cleaner for b2clogin.com",
-  "version": "1.0",
-  "description": "Clears cookies for b2clogin.com with a single click",
+  "name": "SCSA Login Fix",
+  "version": "1.1",
+  "description": "Fixes Script Check SA login issues by clearing b2clogin.com cookies",
   "permissions": [
     "cookies",
     "tabs"
@@ -12,6 +12,7 @@
   ],
   "action": {
     "default_popup": "popup.html",
+    "default_title": "Fix SCSA Login Issues",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
