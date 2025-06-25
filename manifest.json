@@ -1,14 +1,15 @@
 {
   "manifest_version": 3,
   "name": "SCSA Login Fix",
-  "version": "1.1",
-  "description": "Fixes Script Check SA login issues by clearing b2clogin.com cookies",
+  "version": "1.2",
+  "description": "Fixes Script Check SA login issues by clearing b2clogin.com and scriptcheck.sa.gov.au cookies",
   "permissions": [
     "cookies",
     "tabs"
   ],
   "host_permissions": [
-    "*://*.b2clogin.com/*"
+    "*://*.b2clogin.com/*",
+    "*://*.scriptcheck.sa.gov.au/*"
   ],
   "action": {
     "default_popup": "popup.html",
