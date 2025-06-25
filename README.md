@@ -1,6 +1,6 @@
-# Cookie Cleaner for b2clogin.com
+# Cookie Cleaner for SCSA Login
 
-A simple Chrome extension that adds a button to your toolbar to instantly clear all cookies for the b2clogin.com domain.
+A Chrome extension that adds a button to your toolbar to instantly clear all cookies for the Script Check SA login domains (b2clogin.com and scriptcheck.sa.gov.au).
 
 ## Installation
 
@@ -24,19 +24,40 @@ A simple Chrome extension that adds a button to your toolbar to instantly clear 
 ## Usage
 
 1. Click the extension icon in your Chrome toolbar.
-2. Click the "Clear b2clogin.com cookies" button in the popup.
-3. The status message will show how many cookies were deleted.
+2. Click the "Fix SCSA" button in the popup.
+3. The status message will show how many cookies were deleted from both domains.
+4. Refresh the SCSA login page to try logging in again.
+
+## What it does
+
+This extension clears cookies from two domains that are used by the Script Check SA login system:
+- **b2clogin.com** - Microsoft Azure B2C authentication service
+- **scriptcheck.sa.gov.au** - Script Check SA main domain
+
+Clearing these cookies can resolve common login issues such as:
+- Login page appearing blank or missing text inputs
+- Authentication loops or redirects
+- Session conflicts
+- Cached authentication states
 
 ## Customization
 
-If you want to clear cookies for a different domain:
+If you want to clear cookies for different domains:
 
 1. Open the manifest.json file and update the host_permissions and the extension name.
-2. Open the popup.html file and update the button text.
-3. Open the popup.js file and update the domain in the chrome.cookies.getAll() function.
+2. Open the popup.html file and update the button text and help text.
+3. Open the popup.js file and update the domains array with your target domains.
 
 ## Permissions
 
 This extension requires the following permissions:
-- "cookies": To read and delete cookies for b2clogin.com
+- "cookies": To read and delete cookies for the specified domains
 - "tabs": To access the current tab's URL
+
+## Troubleshooting
+
+If the extension doesn't seem to work:
+1. Make sure you've enabled Developer mode in Chrome extensions
+2. Check that all files are in the correct locations
+3. Verify the PNG icon files are properly converted and named
+4. Try reloading the extension from the chrome://extensions/ page
