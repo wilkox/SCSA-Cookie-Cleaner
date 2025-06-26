@@ -23,16 +23,26 @@ A Chrome extension that adds a button to your toolbar to instantly clear all coo
 
 ## Usage
 
-1. Click the extension icon in your Chrome toolbar.
+1. When experiencing SCSA login issues, click the extension icon in your Chrome toolbar.
 2. Click the "Fix SCSA" button in the popup.
-3. The status message will show how many cookies were deleted from both domains.
-4. Refresh the SCSA login page to try logging in again.
+3. The extension will:
+   - Find any open tabs for SCSA domains
+   - Clear authentication cookies from both domains
+   - Automatically refresh any open SCSA tabs
+   - Show you a summary of what was done
+4. Your SCSA tabs will reload with fresh authentication state - try logging in again!
 
 ## What it does
 
-This extension clears cookies from two domains that are used by the Script Check SA login system:
-- **b2clogin.com** - Microsoft Azure B2C authentication service
-- **scriptcheck.sa.gov.au** - Script Check SA main domain
+This extension provides an intelligent fix for Script Check SA login issues by:
+
+1. **Detecting open SCSA tabs** - Automatically finds any open tabs for b2clogin.com or scriptcheck.sa.gov.au
+2. **Clearing authentication cookies** from both domains:
+   - **b2clogin.com** - Microsoft Azure B2C authentication service
+   - **scriptcheck.sa.gov.au** - Script Check SA main domain
+3. **Automatically refreshing** any open SCSA tabs after clearing cookies
+
+This streamlined process means you don't need to manually refresh tabs - the extension does it all for you!
 
 Clearing these cookies can resolve common login issues such as:
 - Login page appearing blank or missing text inputs
@@ -51,8 +61,9 @@ If you want to clear cookies for different domains:
 ## Permissions
 
 This extension requires the following permissions:
-- "cookies": To read and delete cookies for the specified domains
-- "tabs": To access the current tab's URL
+- **"cookies"**: To read and delete cookies for the specified domains
+- **"tabs"**: To find and refresh open SCSA tabs  
+- **"activeTab"**: To interact with the currently active tab
 
 ## Troubleshooting
 
