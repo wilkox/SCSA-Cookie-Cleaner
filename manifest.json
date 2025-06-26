@@ -5,7 +5,8 @@
   "description": "Fixes Script Check SA login issues by clearing b2clogin.com and scriptcheck.sa.gov.au cookies",
   "permissions": [
     "cookies",
-    "tabs"
+    "tabs",
+    "activeTab"
   ],
   "host_permissions": [
     "*://*.b2clogin.com/*",
