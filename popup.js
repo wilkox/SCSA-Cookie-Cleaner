@@ -42,19 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Function to refresh tabs
-  function refreshTabs(tabs) {
+  // Function to redirect tabs to the login page
+  function redirectTabsToLogin(tabs) {
     return new Promise((resolve) => {
       if (tabs.length === 0) {
         resolve();
         return;
       }
       
-      let refreshed = 0;
+      const loginUrl = 'https://hp.scriptcheck.sa.gov.au/home';
+      let redirected = 0;
+      
       tabs.forEach(tab => {
-        chrome.tabs.reload(tab.id, {}, function() {
-          refreshed++;
-          if (refreshed === tabs.length) {
+        chrome.tabs.update(tab.id, { url: loginUrl }, function() {
+          redirected++;
+          if (redirected === tabs.length) {
             resolve();
           }
         });
@@ -117,24 +119,28 @@ document.addEventListener('DOMContentLoaded', function() {
       const totalFound = results.reduce((sum, result) => sum + result.cookiesFound, 0);
       const totalDeleted = results.reduce((sum, result) => sum + result.cookiesDeleted, 0);
       
-      // If we have tabs to refresh and cookies were cleared, refresh them
+      // If we have tabs and cookies were cleared, redirect them to login
       if (relevantTabs.length > 0 && totalDeleted > 0) {
-        showStatus(`Refreshing ${relevantTabs.length} tab(s)...`, 'status-info');
-        await refreshTabs(relevantTabs);
+        showStatus(`Redirecting ${relevantTabs.length} tab(s) to login...`, 'status-info');
+        await redirectTabsToLogin(relevantTabs);
+      } else if (relevantTabs.length > 0 && totalFound === 0) {
+        // No cookies found but we have tabs - redirect them anyway to help with login issues
+        showStatus(`Redirecting ${relevantTabs.length} tab(s) to login...`, 'status-info');
+        await redirectTabsToLogin(relevantTabs);
       }
       
       // Show final results
       if (totalFound === 0) {
         setButtonState('success', 'No cookies found', false);
         if (relevantTabs.length > 0) {
-          showStatus(`No cookies found - tabs refreshed anyway`, 'status-info');
+          showStatus(`No cookies found - tabs redirected to login`, 'status-info');
         } else {
           showStatus('Already clean - try refreshing SCSA', 'status-info');
         }
       } else if (totalDeleted > 0) {
         setButtonState('success', 'Fixed!', false);
         if (relevantTabs.length > 0) {
-          showStatus(`Cleared ${totalDeleted} cookies & refreshed tabs`, 'status-success');
+          showStatus(`Cleared ${totalDeleted} cookies & redirected to login`, 'status-success');
         } else {
           showStatus(`Cleared ${totalDeleted} cookies - refresh SCSA`, 'status-success');
         }
