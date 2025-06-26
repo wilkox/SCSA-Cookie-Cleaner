@@ -28,9 +28,9 @@ A Chrome extension that adds a button to your toolbar to instantly clear all coo
 3. The extension will:
    - Find any open tabs for SCSA domains
    - Clear authentication cookies from both domains
-   - Automatically refresh any open SCSA tabs
+   - Automatically redirect any open SCSA tabs to the main login page (https://hp.scriptcheck.sa.gov.au/home)
    - Show you a summary of what was done
-4. Your SCSA tabs will reload with fresh authentication state - try logging in again!
+4. Your SCSA tabs will now be on the fresh login page - try logging in again!
 
 ## What it does
 
@@ -40,9 +40,9 @@ This extension provides an intelligent fix for Script Check SA login issues by:
 2. **Clearing authentication cookies** from both domains:
    - **b2clogin.com** - Microsoft Azure B2C authentication service
    - **scriptcheck.sa.gov.au** - Script Check SA main domain
-3. **Automatically refreshing** any open SCSA tabs after clearing cookies
+3. **Redirecting to login page** - Automatically navigates any open SCSA tabs to the main login page (https://hp.scriptcheck.sa.gov.au/home)
 
-This streamlined process means you don't need to manually refresh tabs - the extension does it all for you!
+This streamlined process ensures you always start fresh from the correct login page after clearing problematic authentication data!
 
 Clearing these cookies can resolve common login issues such as:
 - Login page appearing blank or missing text inputs
